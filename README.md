@@ -22,9 +22,12 @@ R// Considero que la ventaja que genera es que haces el codigo 1 vez y lo usas l
 ## Pregunta
 Que ocurriria si el libro ya estaba prestado y alguien intenta prestarlo nuevamente sin controles de estado internos? <br>
 
-R// 
+R// Sin controles adecuados, el programa lo prestaria de nuevo auqnue ya el valor de la variable prestado fuera true, no sacaria alerta, y quedaria en un estado 
+inconsistente pues dos personas creerian tener el mismo libro y al devolverlo no se sabria quien lo tiene en realidad
+
 # Ejercicio 5
 ## Pregunta
 Que ventajas tiene permitir que la informacion sea ingresada por el usuario en lugar de  escribir los datos directamente en el codigo? <br>
 
 R// 
+![alt text](image.png)
