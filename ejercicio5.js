@@ -1,59 +1,68 @@
-// Registor interactivo- conccesionario de vehiculos
+// registro interactivo - concesionario de vehiculos
+// se crea la funcion constructora
+var prompt = require('prompt-sync')();
 
+function Vehiculo(marca, color, tipo, placa, modelo, kilometraje) {
+    this.marca = marca;
+    this.color = color;
+    this.tipo = tipo;
+    this.placa = placa;
+    this.modelo = modelo;
+    this.kilometraje = Number(kilometraje); // se ajusta el parametro para que sea tomado como number
+    this.encendido = Math.random() < 0.5; // random true o false para que no todos empiecen igual
+    // dentro de la funcion se hace una impresion de lo que ingreso el usuario
+    console.log("Tu auto es " + marca + " de color " + color + " es de tipo " + tipo + ", su placa es " + placa + " y el modelo es " + modelo);
 
+    // metodo 1: encender (modifica la propiedad encendido)
+    this.encender = function() {
+        if (this.encendido == false) {
+            this.encendido = true;
+            console.log("El " + this.marca + " " + this.modelo + " ahora esta encendido");
+        } else {
+            console.log("El " + this.marca + " " + this.modelo + " ya estaba encendido");
+        }
+    }
 
-function Vehiculo(marca,color,tipo,placa,modelo){
- //auto 1
-this.marca = marca = prompt(`introduce la marca de tu primer vehiculo:` );
- this.color = color = prompt(`introduce el color:` );
- this.tipo = tipo =  prompt(`introduce el tipo de vehiculo:` );;
- this.placa = placa = prompt(`introduce el numero de la placa:` );;
- this.modelo = modelo = prompt(`introduce el año del modelo:` );;
- console.log(`=======================================================`)
- console.log(`Tu auto #1 es ${marca} de color ${color} es de tipo ${tipo}, su numero de placa es ${placa} y y el año del modelo es ${modelo}`)
-console.log(`=======================================================`)
+    // metodo 2: recorrer (modifica la propiedad kilometraje)
+    this.recorrer = function(km) {
+        this.kilometraje = this.kilometraje + Number(km);
+        console.log("El " + this.marca + " recorrio " + km + " km. Total: " + this.kilometraje + " km");
+    }
 
- //auto 2
-this.marca = marca = prompt(`introduce la marca de tu segundo vehiculo:` );
-this.color = color = prompt(`introduce el color:` );
-this.tipo = tipo =  prompt(`introduce el tipo de vehiculo:` );;
-this.placa = placa = prompt(`introduce el numero de la placa:` );;
-this.modelo = modelo = prompt(`introduce el año del modelo:` );;
-console.log(`=======================================================`)
-console.log(`Tu auto #2 es ${marca} de color ${color} es de tipo ${tipo}, su numero de placa es ${placa} y y el año del modelo es ${modelo}`)
- console.log(`=======================================================`)
+    // metodo 3: pintar (modifica la propiedad color)
+    this.pintar = function(nuevoColor) {
+        this.color = nuevoColor;
+        console.log("El " + this.marca + " " + this.modelo + " ahora es de color " + this.color);
+    }
 
-//auto 3
-this.marca = marca = prompt(`introduce la marca de tu segundo vehiculo:` );
-this.color = color = prompt(`introduce el color:` );
-this.tipo = tipo =  prompt(`introduce el tipo de vehiculo:` );;
-this.placa = placa = prompt(`introduce el numero de la placa:` );;
-this.modelo = modelo = prompt(`introduce el año del modelo:` );;
-console.log(`=======================================================`)
-console.log(`Tu auto #3 es ${marca} de color ${color} es de tipo ${tipo}, su numero de placa es ${placa} y y el año del modelo es ${modelo}`)
- console.log(`=======================================================`)
-
-
-
-
-
-
-
+    // metodo 4: mostrar la info
+    this.mostrarInfo = function() {
+        console.log("Vehiculo: " + this.marca + " " + this.modelo + " (" + this.tipo + "), placa " + this.placa + ", color " + this.color + ", " + this.kilometraje + " km, encendido: " + this.encendido);
+    }
 }
-const prompt = require('prompt-sync')();
-const usuario1 = new Vehiculo();
 
+// se piden los datos de 3 vehiculos diferentes con prompt()
+var vehiculos = [];
 
-/*
- Sube const prompt = require('prompt-sync')(); a la línea 2, arriba de todo.
-2. Deja el constructor limpio solo con 5 líneas: this.marca = marca; this.color = color; ... this.modelo = Number(modelo); — borra todos los prompt de adentro (líneas 7-31) y los marca2/marca repetidos.
-3. Agrega los 3 métodos adentro con this, ej: this.mostrarInfo, this.vender (que cambie this.disponible = false), this.pitar. Al menos uno debe hacer this.algo = ....
-4. Si agregas una 6ta propiedad para el método que modifica (ej. disponible o encendido), súmala al constructor.
-5. Abajo, fuera del constructor, pide los datos con let: let marca1 = prompt(...), let color1... y así para los 3 (15 prompts en total).
-6. Crea los 3 objetos: const vehiculo1 = new Vehiculo(marca1,color1,tipo1,placa1,modelo1) y lo mismo para 2 y 3.
-7. Ejecuta los métodos: vehiculo1.mostrarInfo(); vehiculo1.vender(); etc.
-8. Limpia typos: quita los ;; dobles y el y y el año.
-9. Prueba con node ejercicio5.js — debe pedir datos 1 vez por vehículo y mostrar los métodos sin ReferenceError.
-▣  Build · Muse Spark 1.3 Free · 5.6s
+for (var i = 1; i <= 3; i++) {
+    console.log("---- Vehiculo " + i + " ----");
+    var marca = prompt("Marca del vehiculo " + i + ": ");
+    var color = prompt("Color del vehiculo " + i + ": ");
+    var tipo = prompt("Tipo del vehiculo " + i + ": ");
+    var placa = prompt("Placa del vehiculo " + i + ": ");
+    var modelo = prompt("Modelo del vehiculo " + i + ": ");
+    var kilometraje = prompt("Kilometraje del vehiculo " + i + ": ");
+    // se crea el objeto con la palabra new
+    var carro = new Vehiculo(marca, color, tipo, placa, modelo, kilometraje);
+    vehiculos.push(carro);
+}
 
-*/
+// se ejecutan los metodos creados y se muestran en consola
+for (var j = 0; j < vehiculos.length; j++) {
+    console.log("===== Resultado vehiculo " + (j + 1) + " =====");
+    vehiculos[j].mostrarInfo();
+    vehiculos[j].encender();
+    vehiculos[j].recorrer(120);
+    vehiculos[j].pintar("negro");
+    vehiculos[j].mostrarInfo();
+}

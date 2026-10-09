@@ -29,5 +29,4 @@ inconsistente pues dos personas creerian tener el mismo libro y al devolverlo no
 ## Pregunta
 Que ventajas tiene permitir que la informacion sea ingresada por el usuario en lugar de  escribir los datos directamente en el codigo? <br>
 
-R// 
-![alt text](image.png)
+R// la ventaja es que no debes "hardcodear" dejas todo listo para que lo que el cliente ingrese funcion y los valores sean tomados segun el tipo de datos que son 
