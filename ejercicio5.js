@@ -9,33 +9,29 @@ function Vehiculo(marca, color, tipo, placa, modelo, kilometraje) {
     this.placa = placa;
     this.modelo = modelo;
     this.kilometraje = Number(kilometraje); // se ajusta el parametro para que sea tomado como number
-    this.encendido = Math.random() < 0.5; // random true o false para que no todos empiecen igual
+    this.encendido = false; // todos empiezan apagados
     // dentro de la funcion se hace una impresion de lo que ingreso el usuario
     console.log("Tu auto es " + marca + " de color " + color + " es de tipo " + tipo + ", su placa es " + placa + " y el modelo es " + modelo);
 
-    // metodo 1: encender (modifica la propiedad encendido)
+    // metodo 1 encender (modifica encendido)
     this.encender = function() {
-        if (this.encendido == false) {
-            this.encendido = true;
-            console.log("El " + this.marca + " " + this.modelo + " ahora esta encendido");
-        } else {
-            console.log("El " + this.marca + " " + this.modelo + " ya estaba encendido");
-        }
+        this.encendido = true;
+        console.log("El " + this.marca + " " + this.modelo + " ahora esta encendido");
     }
 
-    // metodo 2: recorrer (modifica la propiedad kilometraje)
+    // metodo 2 recorrer (modifica kilometraje)
     this.recorrer = function(km) {
         this.kilometraje = this.kilometraje + Number(km);
         console.log("El " + this.marca + " recorrio " + km + " km. Total: " + this.kilometraje + " km");
     }
 
-    // metodo 3: pintar (modifica la propiedad color)
+    // metodo 3 pintar (modifica color)
     this.pintar = function(nuevoColor) {
         this.color = nuevoColor;
         console.log("El " + this.marca + " " + this.modelo + " ahora es de color " + this.color);
     }
 
-    // metodo 4: mostrar la info
+    // metodo 4 mostrar la info
     this.mostrarInfo = function() {
         console.log("Vehiculo: " + this.marca + " " + this.modelo + " (" + this.tipo + "), placa " + this.placa + ", color " + this.color + ", " + this.kilometraje + " km, encendido: " + this.encendido);
     }
